@@ -58,27 +58,121 @@ sections.forEach((section) => {
 
 newUl.appendChild(newFragment);
 
+
+//add event listener on scroll
+window.addEventListener('scroll', activeSection());
+
+function activeSection() {
+    let allSections = document.querySelectorAll('section');
+    //remove all active classes
+    sections.forEach((section) => {
+        section.classList.remove('your-active-class');
+    });
+    //add an active class
+    sections.forEach((section) => {
+        let rect = section.getBoundingClientRect();
+        if (rect.top >= 0 && rect.bottom < window.innerHeight) {
+            section.classList.add('your-active-class');
+            activeLink(section);
+        }
+    });
+
+
+};
+
+
+function activeLink(activeSection) {
+
+    // remove all active links
+    let links = document.querySelectorAll('a');
+
+    links.forEach((link) => {
+        link.classList.remove('your-active-class');
+    });
+
+    //let links = document.querySelectorAll('a');
+    let sectionNav = activeSection.getAttribute('data-nav');
+
+    links.forEach((link) => {
+        if (link.textContent == sectionNav) {
+            link.classList.add('your-active-class');
+        }
+    });
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //remove all active class
 
-sections.forEach((section) => {
+/*let content = document.querySelectorAll('section');
+
+content.addEventListener('scroll', myFunction);
 
 
-    section.classList.remove('your-active-class');
 
-});
 
-// Add class 'active' to section when near top of viewport
-let allSections = document.querySelectorAll('section');
-allSections.forEach((section) => {
+function myFunction() {
+    sections.forEach((section) => {
 
-    let rect = section.getBoundingClientRect();
 
-    if (rect.top >= 0 && rect.bottom < window.innerHeight) {
-        section.classList.add('your-active-class');
-        activeLink(section);
-    }
+        section.classList.remove('your-active-class');
 
-});
+    });
+
+    // Add class 'active' to section when near top of viewport
+    let allSections = document.querySelectorAll('section');
+    allSections.forEach((section) => {
+
+        let rect = section.getBoundingClientRect();
+
+        if (rect.top >= 0 && rect.bottom < window.innerHeight) {
+            section.classList.add('your-active-class');
+            activeLink(section);
+        }
+    });
+}
 
 
 
@@ -87,9 +181,10 @@ function activeLink(activeSection) {
 
     // remove all active links
     let links = document.querySelectorAll('a');
+
     links.forEach((link) => {
         link.classList.remove('your-active-class');
-    })
+    });
 
     //let links = document.querySelectorAll('a');
     let sectionNav = activeSection.getAttribute('data-nav');
@@ -116,9 +211,3 @@ function activeLink(activeSection) {
 // Build menu 
 
 // Scroll to section on link click
-
-
-
-
-
-// Set sections as active
