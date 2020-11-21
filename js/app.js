@@ -58,18 +58,18 @@ sections.forEach((section) => {
 
 newUl.appendChild(newFragment);
 
-
+let boddy = document.querySelectorAll('section');
 //add event listener on scroll
-window.addEventListener('scroll', activeSection());
+window.addEventListener('scroll', activeSection);
 
 function activeSection() {
     let allSections = document.querySelectorAll('section');
     //remove all active classes
-    sections.forEach((section) => {
+    allSections.forEach((section) => {
         section.classList.remove('your-active-class');
     });
     //add an active class
-    sections.forEach((section) => {
+    allSections.forEach((section) => {
         let rect = section.getBoundingClientRect();
         if (rect.top >= 0 && rect.bottom < window.innerHeight) {
             section.classList.add('your-active-class');
@@ -87,7 +87,7 @@ function activeLink(activeSection) {
     let links = document.querySelectorAll('a');
 
     links.forEach((link) => {
-        link.classList.remove('your-active-class');
+        link.classList.remove('your-active-link');
     });
 
     //let links = document.querySelectorAll('a');
@@ -95,7 +95,7 @@ function activeLink(activeSection) {
 
     links.forEach((link) => {
         if (link.textContent == sectionNav) {
-            link.classList.add('your-active-class');
+            link.classList.add('your-active-link');
         }
     });
 
